@@ -1,0 +1,29 @@
+<form>
+    <div class="md-form card col-sm-6 pb-1">
+        <label for="inputPlaceholderEx">Put the username you want to search here:</label>
+        <br>
+        <input [(ngModel)]="Username" placeholder="Type username" type="text" id="inputPlaceholderEx" class="form-control">
+        <input type="submit" value="Enter" class="btn btn-primary">
+    </div>
+    <div class="card col-sm-6" *ngIf="stats">
+        <div class="card-header">Players</div>
+        <div class="card-block">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stat of stats.data">
+                        <td>{{stat.attributes.name}}</td>
+                        <td>{{stat.type}}</td>
+                        <td>{{stat.id}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
