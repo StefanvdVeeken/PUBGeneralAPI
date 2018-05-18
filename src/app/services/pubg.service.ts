@@ -11,8 +11,12 @@ export class PUBGService{
 
     }
 
-     getStats(name:string):Observable<IPUBGData>{
-        return this._http.get<IPUBGData>(`https://api.playbattlegrounds.com/shards/pc-eu/players?filter[playerNames]=${name}`);
+     getPlayer(region:string,name:string):Observable<IPUBGData>{
+        return this._http.get<IPUBGData>(`https://api.playbattlegrounds.com/shards/${region}/players?filter[playerNames]=${name}`);
+     }
+
+     getMatches(region:string, matchID:string):Observable<IPUBGData>{
+        return this._http.get<IPUBGData>(`https://api.playbattlegrounds.com/shards/${region}/matches/${matchID}`);
      }
 
 }
