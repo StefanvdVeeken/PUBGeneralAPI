@@ -1,29 +1,48 @@
-<div class="md-form card col-sm-6 pb-1 pt-2">
+    <div class="md-form card col-sm-3 pb-1 pt-2">
         <p>Choose a region</p>
         <select class="mb-2" [(ngModel)]="Region">
-                <option *ngFor="let region of regions" value="{{region}}">{{region}}</option>
+            <option *ngFor="let region of regions" value="{{region}}">{{region}}</option>
         </select>
-        <input #SearchName type="text" class="mr-5" placeholder="Type username" id="inputPlaceholderEx" (keyup.enter)="SearchUsername(SearchName.value)">
-</div>
-
-<div class="card col-sm-6" *ngIf="stats">
-    <div class="card-header">Players</div>
-    <div class="card-block">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let stat of stats.data">
-                    <td>{{stat.attributes.name}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <p>Select the number of matches you want to display (1-5)</p>
+        <select class="" [(ngModel)] = "NumberOfMatches">
+            <option *ngFor="let n of numberOfMatches" value="{{n}}">{{n}}</option>
+        </select>
+        <input #SearchName type="text" class="mr-5 mb-3" placeholder="Username" id="inputPlaceholderEx" (keyup.enter)="SearchUsername(SearchName.value)">
+        <p>Press enter to search</p>
     </div>
-</div>
 
-<div class="card col-sm-6" *ngIf="!stats">
-    <p>Please enter a valid username</p>
-</div>
+    <br>
+
+    <div class="card col-sm-6" *ngIf="match">
+        <div class="card-header">Matches</div>
+        <div class="card-block">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Ranking</th>
+                        <th>Kills</th>
+                        <th>Headshots</th>
+                        <th>Assists</th>
+                        <th>Damage dealt</th>
+                        <th>Total distance travelled</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{player.data[0].attributes.name}}</td>
+                        <td>{{match.included[_matchIndex].attributes.stats.winPlace}}</td>
+                        <td>{{match.included[_matchIndex].attributes.stats.kills}}</td>
+                        <td>{{match.included[_matchIndex].attributes.stats.headshotKills}}</td>
+                        <td>{{match.included[_matchIndex].attributes.stats.assists}}</td>
+                        <td>{{match.included[_matchIndex].attributes.stats.damageDealt | number: '1.0-1'}}</td>
+                        <td mdbTooltip = "Walk distance: {{match.included[_matchIndex].attributes.stats.walkDistance *0.001|number:'1.1-2'}} km Drive distance: {{match.included[_matchIndex].attributes.stats.rideDistance *0.001|number:'1.1-2'}} km">{{(match.included[_matchIndex].attributes.stats.walkDistance + match.included[_matchIndex].attributes.stats.rideDistance)*0.001|number:'1.1-2'}} km</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card col-sm-3" *ngIf="!match">
+        <p>Please wait for the match statistics to be loaded</p>
+    </div>
