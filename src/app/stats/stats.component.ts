@@ -11,11 +11,11 @@ import { MatchData } from '../DataInterfaces/MatchInterface';
 export class StatsComponent implements OnInit {
 
   player: IPUBGData;
-  match: MatchData;
+  match: MatchData[] = [];
   private _username: string;
   private _matchid: string;
-  private _matchIndex: number;
-  numberOfMatches: number[]=[
+  private _matchIndex: number[] = [];
+  numberOfMatches: number[] = [
     1,
     2,
     3,
@@ -39,21 +39,21 @@ export class StatsComponent implements OnInit {
     "pc-as",
   ];
   private _region: string;
+  private nofmatches: number;
 
   constructor(private _svc: PUBGService) {
 
   }
   ngOnInit(): void {
-    // this._svc.getStats(this._region, this._username)
-    //         .subscribe(result => this.stats = result);
+
   }
 
-  get NumberOfMatches(){
-    return this.numberOfMatches;
+  get NumberOfMatches() {
+    return this.nofmatches;
   }
 
-  set NumberOfMatches(value : number[]){
-    this.numberOfMatches = value;
+  set NumberOfMatches(value: number) {
+    this.nofmatches = value;
   }
   get Region() {
     return this._region;
@@ -66,24 +66,29 @@ export class StatsComponent implements OnInit {
   SearchUsername(name: string) {
     this.player = null;
     this._username = name;
-    this._svc.getPlayer(this._region, this._username).subscribe(result => {this.player = result; this.RetrieveMatchData(result.data[0].relationships.matches.data[0].id);});
+    this._matchIndex = [];
+    this.match = [];
+    this._svc.getPlayer(this._region, this._username).subscribe(result => {
+    this.player = result;
+      for (var i = 0; i < this.nofmatches; i++) {
+        this.RetrieveMatchData(result.data[0].relationships.matches.data[i].id, i);
+      };
+    });
   }
 
-  RetrieveMatchData(matchID: string) {
-    this._svc.getMatches(this._region, matchID).subscribe(r => {console.log(matchID); this.match = r, this.GetMatchStatsIndex();});
+  RetrieveMatchData(matchID: string, index: number) {
+    this._svc.getMatches(this._region, matchID).subscribe(r => { console.log(matchID); this.match.push(r); this.GetMatchStatsIndex(index);});
   }
 
-  GetMatchStatsIndex() {
-    for (var i = 0; i < this.match.included.length; i++) {
-      if (this.match.included[i].type == "participant") {
-        if (this.match.included[i].attributes.stats.name == this._username) {
-          this._matchIndex = i;
+  GetMatchStatsIndex(index: number) {
+    for (var i = 0; i < this.match[index].included.length; i++) {
+      if (this.match[index].included[i].type == "participant") {
+        if (this.match[index].included[i].attributes.stats.name == this._username) {
+          this._matchIndex.push(i);
         }
       }
     }
+    console.log(this._matchIndex);
   }
+
 }
-
-
-
-
