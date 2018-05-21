@@ -12,7 +12,7 @@
 </div>
 
 <br>
-<div class="card col-sm-6" *ngIf="match?.length > 0">
+<div class="card col-sm-6" *ngIf="player && match?.length >= NumberOfMatches && !isLoading && _matchIndex?.length >= NumberOfMatches">
     <div class="card-header">Matches</div>
     <div class="card-block">
         <table class="table table-hover">
@@ -27,22 +27,21 @@
                     <th>Total distance travelled</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let m of match, let i = index">
+            <tbody *ngFor="let m of match, let i = index">
+                <tr> 
                     <td>{{player.data[0].attributes.name}}</td>
                     <td>{{m.included[_matchIndex[i]].attributes.stats.winPlace}}</td>
                     <td>{{m.included[_matchIndex[i]].attributes.stats.kills}}</td>
                     <td>{{m.included[_matchIndex[i]].attributes.stats.headshotKills}}</td>
                     <td>{{m.included[_matchIndex[i]].attributes.stats.assists}}</td>
                     <td>{{m.included[_matchIndex[i]].attributes.stats.damageDealt | number: '1.0-1'}}</td>
-                    <!-- <td mdbTooltip="Walk distance: {{match.included[_matchIndex[i]].attributes.stats.walkDistance *0.001|number:'1.1-2'}} km Drive distance: {{match.included[_matchIndex[i]].attributes.stats.rideDistance *0.001|number:'1.1-2'}} km">{{(match.included[_matchIndex[i]].attributes.stats.walkDistance + match.included[_matchIndex[i]].attributes.stats.rideDistance)*0.001|number:'1.1-2'}} km</td> -->
+                    <td mdbTooltip="Walk distance: {{m.included[_matchIndex[i]].attributes.stats.walkDistance *0.001|number:'1.1-2'}} km Drive distance: {{m.included[_matchIndex[i]].attributes.stats.rideDistance *0.001|number:'1.1-2'}} km">{{(m.included[_matchIndex[i]].attributes.stats.walkDistance + m.included[_matchIndex[i]].attributes.stats.rideDistance)*0.001|number:'1.1-2'}} km</td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-
-<div class="card col-sm-3" *ngIf="match.length == 0">
+<div class="card col-sm-3" *ngIf="match.length == 0 || isLoading">
     <p>Please wait for the match statistics to be loaded</p>
 </div>

@@ -40,6 +40,7 @@ export class StatsComponent implements OnInit {
   ];
   private _region: string;
   private nofmatches: number;
+  isLoading:boolean = false;
 
   constructor(private _svc: PUBGService) {
 
@@ -64,6 +65,7 @@ export class StatsComponent implements OnInit {
   }
 
   SearchUsername(name: string) {
+    this.isLoading = true;
     this.player = null;
     this._username = name;
     this._matchIndex = [];
@@ -77,7 +79,10 @@ export class StatsComponent implements OnInit {
   }
 
   RetrieveMatchData(matchID: string, index: number) {
-    this._svc.getMatches(this._region, matchID).subscribe(r => { console.log(matchID); this.match.push(r); this.GetMatchStatsIndex(index);});
+    this._svc.getMatches(this._region, matchID).subscribe(r => {this.match.push(r);
+      setTimeout(() =>{this.GetMatchStatsIndex(index)}, 100);
+      //this.GetMatchStatsIndex(index)
+    });
   }
 
   GetMatchStatsIndex(index: number) {
@@ -89,6 +94,7 @@ export class StatsComponent implements OnInit {
       }
     }
     console.log(this._matchIndex);
+    this.isLoading = false;
   }
 
 }
