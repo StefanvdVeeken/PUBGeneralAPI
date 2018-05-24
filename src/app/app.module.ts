@@ -10,12 +10,14 @@ import { StatsComponent } from './stats/stats.component';
 import { PUBGService } from './services/pubg.service';
 import { InterceptService } from './services/intercept.service';
 import { FormsModule } from '@angular/forms';
+import { ItemsComponent } from './Items/items.component';
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     HomeComponent,
-    StatsComponent
+    StatsComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     RouterModule.forRoot([
       {path:"home", component: HomeComponent},
       {path:"stats", component: StatsComponent},
-      {path:"", redirectTo:"home", pathMatch:'full'}
+      {path:"items", component: ItemsComponent},
+      {path:"", redirectTo:"home", pathMatch:'full'},
     ], {useHash:true}),
     HttpClientModule
   ],
