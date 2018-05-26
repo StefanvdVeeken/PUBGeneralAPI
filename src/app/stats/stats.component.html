@@ -46,6 +46,6 @@
     <p>Please wait for the match statistics to be loaded</p>
 </div>
 
-<div class="card col-sm-3" *ngIf="match?.length < NumberOfMatches && player">
+<div class="card col-sm-3" *ngIf="match?.length < NumberOfMatches && player && !isLoading">
     <p>This player hasn't played this many matches, select less!</p>
 </div>

@@ -36,11 +36,11 @@ export class StatsComponent implements OnInit {
     "pc-kakao",
     "pc-sea",
     "pc-sa",
-    "pc-as",
+    "pc-as"
   ];
   private _region: string;
   private nofmatches: number;
-  isLoading:boolean = false;
+  isLoading: boolean = false;
 
   constructor(private _svc: PUBGService) {
 
@@ -71,28 +71,34 @@ export class StatsComponent implements OnInit {
     this._matchIndex = [];
     this.match = [];
     this._svc.getPlayer(this._region, this._username).subscribe(result => {
-    this.player = result;
+      this.player = result;
       for (var i = 0; i < this.nofmatches; i++) {
-        this.RetrieveMatchData(result.data[0].relationships.matches.data[i].id, i);
+        this.RetrieveMatchData(result.data[0].relationships.matches.data[i].id);
       };
     });
   }
 
-  RetrieveMatchData(matchID: string, index: number) {
-    this._svc.getMatches(this._region, matchID).subscribe(r => {this.match.push(r);
-      setTimeout(() =>{this.GetMatchStatsIndex(index)}, 100);
-      //this.GetMatchStatsIndex(index)
+  RetrieveMatchData(matchID: string) {
+    this._svc.getMatches(this._region, matchID).subscribe(r => {
+      this.match.push(r);
+      //setTimeout(() =>{this.GetMatchStatsIndex(index)}, 100);
+      if (this.match.length == this.nofmatches) {
+        this.GetMatchStatsIndex()
+      };
     });
   }
 
-  GetMatchStatsIndex(index: number) {
-    for (var i = 0; i < this.match[index].included.length; i++) {
-      if (this.match[index].included[i].type == "participant") {
-        if (this.match[index].included[i].attributes.stats.name == this._username) {
-          this._matchIndex.push(i);
+  GetMatchStatsIndex() {
+    for (var j = 0; j < this.nofmatches; j++) {
+      for (var i = 0; i < this.match[j].included.length; i++) {
+        if (this.match[j].included[i].type == "participant") {
+          if (this.match[j].included[i].attributes.stats.name == this._username) {
+            this._matchIndex.push(i);
+          }
         }
       }
     }
+
     console.log(this._matchIndex);
     this.isLoading = false;
   }
