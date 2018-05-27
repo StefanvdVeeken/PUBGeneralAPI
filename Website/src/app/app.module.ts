@@ -11,6 +11,7 @@ import { PUBGService } from './services/pubg.service';
 import { InterceptService } from './services/intercept.service';
 import { FormsModule } from '@angular/forms';
 import { ItemsComponent } from './Items/items.component';
+import { ImageService } from './services/image.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,8 @@ import { ItemsComponent } from './Items/items.component';
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptService,
       multi: true
-    }
+    },
+    ImageService
   ],
   bootstrap: [AppComponent]
 })

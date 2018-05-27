@@ -1,1 +1,9 @@
 <div style='color: white;'>Hier komen alle items van PUBG!</div>
+<div class="container" *ngIf="imagebytes && !loading">
+    <div style='color: white;'>
+        <img src="data:image/jpeg;base64,{{imagebytes[0]}}" style="height: 400px">
+    </div>
+    <div style='color: white;'>
+        <img src="data:image/jpeg;base64,{{imagebytes[1]}}" style="height: 400px">
+    </div>
+</div>

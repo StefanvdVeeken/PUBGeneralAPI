@@ -23,6 +23,14 @@ namespace AssetsApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllHeaders", builder =>{
+                   builder.AllowAnyHeader();
+                   builder.AllowAnyMethod();
+                   builder.AllowAnyOrigin(); 
+                });
+            });
             services.AddMvc();
         }
 
@@ -35,6 +43,7 @@ namespace AssetsApi
             }
 
             app.UseMvc();
+            app.UseCors("AllowAllHeaders");
         }
     }
 }
