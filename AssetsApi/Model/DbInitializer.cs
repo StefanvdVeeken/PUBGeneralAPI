@@ -6,112 +6,157 @@ namespace Model
 {
     public class DBIntitializer
     {
-        public static void Initialize(LibraryContext context)
+        public static void Initialize(PicturesContext context)
         {
-            List<Picture> Maps = new List<Picture>();
-            List<Picture> Ammunition = new List<Picture>();
-            List<Picture> Attachments = new List<Picture>();
-            List<Picture> Equipment = new List<Picture>();
-            List<Picture> Use = new List<Picture>();
-            List<Picture> Weapons = new List<Picture>();
             //Create the db if not yet exists
             context.Database.EnsureCreated();
-            if (!context.Pictures.Any())
+            if (!context.Maps.Any())
             {
                 foreach (string maps in System.IO.Directory.GetFiles("./assets/Maps"))
                 {
-                    Maps.Add(new Picture(){
+                    context.Maps.Add(new Picture()
+                    {
                         Name = maps,
                         ByteValue = System.IO.File.ReadAllBytes(maps),
                         Type = "map"
                     });
                 }
+            }
 
-                foreach (string ammo in System.IO.Directory.GetFiles("./assets/Ammunition/None"))
+            if (!context.Ammunition.Any())
+            {
+                foreach (string ammo in System.IO.Directory.GetFiles("./assets/Item/Ammunition/None"))
                 {
-                    Ammunition.Add(new Picture(){
+                    context.Ammunition.Add(new Picture()
+                    {
                         Name = ammo,
                         ByteValue = System.IO.File.ReadAllBytes(ammo),
                         Type = "ammunition"
                     });
                 }
+            }
 
-                foreach (string attachment in System.IO.Directory.GetFiles("./assets/Attachment/None"))
+            if (!context.Attachments.Any())
+            {
+                foreach (string attachment in System.IO.Directory.GetFiles("./assets/Item/Attachment/None"))
                 {
-                    Attachments.Add(new Picture(){
+                    context.Attachments.Add(new Picture()
+                    {
                         Name = attachment,
                         ByteValue = System.IO.File.ReadAllBytes(attachment),
-                        Type="attachment"
+                        Type = "attachment"
                     });
                 }
+            }
 
-                foreach (string gear in System.IO.Directory.GetFiles("./assets/Attachment/None"))
+            if (!context.Equipment.Any())
+            {
+                foreach (string gear in System.IO.Directory.GetFiles("./assets/Item/Equipment/Backpack"))
                 {
-                    Equipment.Add(new Picture(){
+                    context.Equipment.Add(new Picture()
+                    {
                         Name = gear,
                         ByteValue = System.IO.File.ReadAllBytes(gear),
-                        Type="equipment"
+                        Type = "backpack"
                     });
                 }
 
-                foreach (string item in System.IO.Directory.GetFiles("./assets/Attachment/None"))
+                foreach (string gear in System.IO.Directory.GetFiles("./assets/Item/Equipment/Headgear"))
                 {
-                    Use.Add(new Picture(){
+                    context.Equipment.Add(new Picture()
+                    {
+                        Name = gear,
+                        ByteValue = System.IO.File.ReadAllBytes(gear),
+                        Type = "headGear"
+                    });
+                }
+
+                foreach (string gear in System.IO.Directory.GetFiles("./assets/Item/Equipment/Vest"))
+                {
+                    context.Equipment.Add(new Picture()
+                    {
+                        Name = gear,
+                        ByteValue = System.IO.File.ReadAllBytes(gear),
+                        Type = "vest"
+                    });
+                }
+            }
+
+            if (!context.UseItems.Any())
+            {
+                foreach (string item in System.IO.Directory.GetFiles("./assets/Item/Use/Boost"))
+                {
+                    context.UseItems.Add(new Picture()
+                    {
                         Name = item,
                         ByteValue = System.IO.File.ReadAllBytes(item),
-                        Type="use"
+                        Type = "booster"
                     });
                 }
 
-                foreach (string weapon in System.IO.Directory.GetFiles("./assets/Attachment/None"))
+                foreach (string item in System.IO.Directory.GetFiles("./assets/Item/Use/Fuel"))
                 {
-                    Weapons.Add(new Picture(){
+                    context.UseItems.Add(new Picture()
+                    {
+                        Name = item,
+                        ByteValue = System.IO.File.ReadAllBytes(item),
+                        Type = "fuel"
+                    });
+                }
+
+                foreach (string item in System.IO.Directory.GetFiles("./assets/Item/Use/Heal"))
+                {
+                    context.UseItems.Add(new Picture()
+                    {
+                        Name = item,
+                        ByteValue = System.IO.File.ReadAllBytes(item),
+                        Type = "heal"
+                    });
+                }
+            }
+
+            if (!context.Weapons.Any())
+            {
+                foreach (string weapon in System.IO.Directory.GetFiles("./assets/Item/Weapon/Handgun"))
+                {
+                    context.Weapons.Add(new Picture()
+                    {
                         Name = weapon,
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
-                        Type="attachment"
+                        Type = "handgun"
                     });
                 }
-               
-            }
-            //Are there already books present ?
-            // if (!context.Books.Any())
-            // {
-            //     var suzanne = new Author()
-            //     {
-            //         Name = "Collins",
-            //         FirstName = "Suzanne"
-            //     };
-            //     context.Authors.Add(suzanne);
-            //     var george = new Author()
-            //     {
-            //         Name = "Orwell",
-            //         FirstName = "George"
-            //     };
-            //     context.Authors.Add(george);
 
-            //     //Create new book
-            //     var bk = new Book()
-            //     {
-            //         Title = "The Hunger Games",
-            //         ISBN = "0439023483",
-            //         Pages = 374,
-            //         Genre = "Adventure",
-            //         Author = suzanne
-            //     };
-            //     //Add the book to the collection of books
-            //     context.Books.Add(bk);
-            //     bk = new Book()
-            //     {
-            //         Title = "Animal Farm",
-            //         ISBN = "0452284244",
-            //         Pages = 122,
-            //         Genre = "Mystery",
-            //         Author = george
-            //     };
-            //     context.Books.Add(bk);
-            //     //Save all the changes to the DB
-            //     context.SaveChanges();
-            // }
+                foreach (string weapon in System.IO.Directory.GetFiles("./assets/Item/Weapon/Main"))
+                {
+                    context.Weapons.Add(new Picture()
+                    {
+                        Name = weapon,
+                        ByteValue = System.IO.File.ReadAllBytes(weapon),
+                        Type = "rifle"
+                    });
+                }
+
+                foreach (string weapon in System.IO.Directory.GetFiles("./assets/Item/Weapon/Melee"))
+                {
+                    context.Weapons.Add(new Picture()
+                    {
+                        Name = weapon,
+                        ByteValue = System.IO.File.ReadAllBytes(weapon),
+                        Type = "melee"
+                    });
+                }
+
+                foreach (string weapon in System.IO.Directory.GetFiles("./assets/Item/Weapon/Throwable"))
+                {
+                    context.Weapons.Add(new Picture()
+                    {
+                        Name = weapon,
+                        ByteValue = System.IO.File.ReadAllBytes(weapon),
+                        Type = "throw"
+                    });
+                }
+            }
             context.SaveChanges();
         }
     }
