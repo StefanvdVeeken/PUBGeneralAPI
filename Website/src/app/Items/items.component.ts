@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../services/image.service';
+import { PictureData } from '../DataInterfaces/PictureInterface';
 
 @Component({
   selector: 'app-items',
@@ -7,7 +8,7 @@ import { ImageService } from '../services/image.service';
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit {
-  imagebytes : ByteString[];
+  image : PictureData[];
   loading : boolean;
   constructor(private _svc: ImageService) {
 
@@ -17,11 +18,11 @@ export class ItemsComponent implements OnInit {
   ngOnInit(): void {
     this.loading = true;
     this._svc.getImages().subscribe(result => {
-      this.imagebytes = result;
-      if(this.imagebytes.length == 2){
+      this.image = result;
+      console.log(this.image);
+      if(this.image.length == result.length){
         this.loading = false;
       }
-    })
+    });
   }
-
 }

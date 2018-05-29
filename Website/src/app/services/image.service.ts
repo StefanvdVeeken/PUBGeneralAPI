@@ -3,6 +3,7 @@ import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/do";
 import "rxjs/add/observable/of";
+import { PictureData } from "../DataInterfaces/PictureInterface";
 
 @Injectable()
 export class ImageService{
@@ -10,7 +11,7 @@ export class ImageService{
 
     }
 
-     getImages():Observable<ByteString[]>{
-        return this._http.get<ByteString[]>('http://localhost:5000/api/v1/maps');
+     getImages():Observable<PictureData[]>{
+        return this._http.get<PictureData[]>('http://localhost:5000/api/v1/items');
      }
 }

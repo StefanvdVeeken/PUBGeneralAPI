@@ -10,53 +10,43 @@ namespace Model
         {
             //Create the db if not yet exists
             context.Database.EnsureCreated();
-
-            if (!context.Maps.Any())
+            if (!context.Images.Any())
             {
                 foreach (string maps in System.IO.Directory.GetFiles("./assets/Maps"))
                 {
-                    context.Maps.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = maps.Substring(13),
+                        Name = maps.Substring(14, (maps.Length - 14 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(maps),
                         Type = "map"
                     });
                 }
-            }
 
-            if (!context.Ammunition.Any())
-            {
                 foreach (string ammo in System.IO.Directory.GetFiles("./assets/Item/Ammunition/None"))
                 {
-                    context.Ammunition.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = ammo.Substring(29),
+                        Name = ammo.Substring(30, (ammo.Length - 30 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(ammo),
                         Type = "ammunition"
                     });
                 }
-            }
 
-            if (!context.Attachments.Any())
-            {
                 foreach (string attachment in System.IO.Directory.GetFiles("./assets/Item/Attachment/None"))
                 {
-                    context.Attachments.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = attachment.Substring(29),
+                        Name = attachment.Substring(30, (attachment.Length - 30 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(attachment),
                         Type = "attachment"
                     });
                 }
-            }
 
-            if (!context.Equipment.Any())
-            {
                 foreach (string gear in System.IO.Directory.GetFiles("./assets/Item/Equipment/Backpack"))
                 {
-                    context.Equipment.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = gear.Substring(32),
+                        Name = gear.Substring(33, (gear.Length - 33 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(gear),
                         Type = "backpack"
                     });
@@ -64,9 +54,9 @@ namespace Model
 
                 foreach (string gear in System.IO.Directory.GetFiles("./assets/Item/Equipment/Headgear"))
                 {
-                    context.Equipment.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = gear.Substring(32),
+                        Name = gear.Substring(33, (gear.Length - 33 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(gear),
                         Type = "headGear"
                     });
@@ -74,22 +64,19 @@ namespace Model
 
                 foreach (string gear in System.IO.Directory.GetFiles("./assets/Item/Equipment/Vest"))
                 {
-                    context.Equipment.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = gear.Substring(28),
+                        Name = gear.Substring(29, (gear.Length - 29 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(gear),
                         Type = "vest"
                     });
                 }
-            }
 
-            if (!context.UseItems.Any())
-            {
                 foreach (string item in System.IO.Directory.GetFiles("./assets/Item/Use/Boost"))
                 {
-                    context.UseItems.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = item.Substring(23),
+                        Name = item.Substring(24, (item.Length - 24 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(item),
                         Type = "booster"
                     });
@@ -97,9 +84,9 @@ namespace Model
 
                 foreach (string item in System.IO.Directory.GetFiles("./assets/Item/Use/Fuel"))
                 {
-                    context.UseItems.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = item.Substring(22),
+                        Name = item.Substring(23, (item.Length - 23 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(item),
                         Type = "fuel"
                     });
@@ -107,22 +94,19 @@ namespace Model
 
                 foreach (string item in System.IO.Directory.GetFiles("./assets/Item/Use/Heal"))
                 {
-                    context.UseItems.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = item.Substring(22),
+                        Name = item.Substring(23, (item.Length - 23 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(item),
                         Type = "heal"
                     });
                 }
-            }
 
-            if (!context.Weapons.Any())
-            {
                 foreach (string weapon in System.IO.Directory.GetFiles("./assets/Item/Weapon/Handgun"))
                 {
-                    context.Weapons.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = weapon.Substring(28),
+                        Name = weapon.Substring(29, (weapon.Length - 30 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
                         Type = "handgun"
                     });
@@ -130,9 +114,9 @@ namespace Model
 
                 foreach (string weapon in System.IO.Directory.GetFiles("./assets/Item/Weapon/Main"))
                 {
-                    context.Weapons.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = weapon.Substring(25),
+                        Name = weapon.Substring(26, (weapon.Length - 26 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
                         Type = "rifle"
                     });
@@ -140,9 +124,9 @@ namespace Model
 
                 foreach (string weapon in System.IO.Directory.GetFiles("./assets/Item/Weapon/Melee"))
                 {
-                    context.Weapons.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = weapon.Substring(26),
+                        Name = weapon.Substring(27, (weapon.Length - 27 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
                         Type = "melee"
                     });
@@ -150,15 +134,15 @@ namespace Model
 
                 foreach (string weapon in System.IO.Directory.GetFiles("./assets/Item/Weapon/Throwable"))
                 {
-                    context.Weapons.Add(new Picture()
+                    context.Images.Add(new Picture()
                     {
-                        Name = weapon.Substring(30),
+                        Name = weapon.Substring(31, (weapon.Length - 31 - 4)),
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
                         Type = "throw"
                     });
                 }
+                context.SaveChanges();
             }
-            context.SaveChanges();
         }
     }
 }

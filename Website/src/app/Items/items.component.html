@@ -1,9 +1,28 @@
 <div style='color: white;'>Hier komen alle items van PUBG!</div>
-<div class="container" *ngIf="imagebytes && !loading">
-    <div style='color: white;'>
-        <img src="data:image/jpeg;base64,{{imagebytes[0]}}" style="height: 400px">
-    </div>
-    <div style='color: white;'>
-        <img src="data:image/jpeg;base64,{{imagebytes[1]}}" style="height: 400px">
+<div class="card col-sm-6" *ngIf="image && !isLoading">
+    <div class="card" style="height: 85vh">
+        <div class="card-body" style="overflow-y: auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Picture</th>
+
+                    </tr>
+                </thead>
+                <tbody *ngFor="let m of image">
+                    <tr>
+                        <td>{{m.id}}</td>
+                        <td>{{m.name}}</td>
+                        <td>{{m.type}}</td>
+                        <td>
+                            <img src="data:image/jpeg;base64,{{m.byteValue}}" style="height: 100px">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
