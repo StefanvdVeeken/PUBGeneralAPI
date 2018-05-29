@@ -10,13 +10,14 @@ namespace Model
         {
             //Create the db if not yet exists
             context.Database.EnsureCreated();
+
             if (!context.Maps.Any())
             {
                 foreach (string maps in System.IO.Directory.GetFiles("./assets/Maps"))
                 {
                     context.Maps.Add(new Picture()
                     {
-                        Name = maps,
+                        Name = maps.Substring(13),
                         ByteValue = System.IO.File.ReadAllBytes(maps),
                         Type = "map"
                     });
@@ -29,7 +30,7 @@ namespace Model
                 {
                     context.Ammunition.Add(new Picture()
                     {
-                        Name = ammo,
+                        Name = ammo.Substring(29),
                         ByteValue = System.IO.File.ReadAllBytes(ammo),
                         Type = "ammunition"
                     });
@@ -42,7 +43,7 @@ namespace Model
                 {
                     context.Attachments.Add(new Picture()
                     {
-                        Name = attachment,
+                        Name = attachment.Substring(29),
                         ByteValue = System.IO.File.ReadAllBytes(attachment),
                         Type = "attachment"
                     });
@@ -55,7 +56,7 @@ namespace Model
                 {
                     context.Equipment.Add(new Picture()
                     {
-                        Name = gear,
+                        Name = gear.Substring(32),
                         ByteValue = System.IO.File.ReadAllBytes(gear),
                         Type = "backpack"
                     });
@@ -65,7 +66,7 @@ namespace Model
                 {
                     context.Equipment.Add(new Picture()
                     {
-                        Name = gear,
+                        Name = gear.Substring(32),
                         ByteValue = System.IO.File.ReadAllBytes(gear),
                         Type = "headGear"
                     });
@@ -75,7 +76,7 @@ namespace Model
                 {
                     context.Equipment.Add(new Picture()
                     {
-                        Name = gear,
+                        Name = gear.Substring(28),
                         ByteValue = System.IO.File.ReadAllBytes(gear),
                         Type = "vest"
                     });
@@ -88,7 +89,7 @@ namespace Model
                 {
                     context.UseItems.Add(new Picture()
                     {
-                        Name = item,
+                        Name = item.Substring(23),
                         ByteValue = System.IO.File.ReadAllBytes(item),
                         Type = "booster"
                     });
@@ -98,7 +99,7 @@ namespace Model
                 {
                     context.UseItems.Add(new Picture()
                     {
-                        Name = item,
+                        Name = item.Substring(22),
                         ByteValue = System.IO.File.ReadAllBytes(item),
                         Type = "fuel"
                     });
@@ -108,7 +109,7 @@ namespace Model
                 {
                     context.UseItems.Add(new Picture()
                     {
-                        Name = item,
+                        Name = item.Substring(22),
                         ByteValue = System.IO.File.ReadAllBytes(item),
                         Type = "heal"
                     });
@@ -121,7 +122,7 @@ namespace Model
                 {
                     context.Weapons.Add(new Picture()
                     {
-                        Name = weapon,
+                        Name = weapon.Substring(28),
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
                         Type = "handgun"
                     });
@@ -131,7 +132,7 @@ namespace Model
                 {
                     context.Weapons.Add(new Picture()
                     {
-                        Name = weapon,
+                        Name = weapon.Substring(25),
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
                         Type = "rifle"
                     });
@@ -141,7 +142,7 @@ namespace Model
                 {
                     context.Weapons.Add(new Picture()
                     {
-                        Name = weapon,
+                        Name = weapon.Substring(26),
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
                         Type = "melee"
                     });
@@ -151,7 +152,7 @@ namespace Model
                 {
                     context.Weapons.Add(new Picture()
                     {
-                        Name = weapon,
+                        Name = weapon.Substring(30),
                         ByteValue = System.IO.File.ReadAllBytes(weapon),
                         Type = "throw"
                     });
