@@ -31,7 +31,7 @@ public class ImagesController : Controller
     [HttpGet]
     public Picture GetImage(int id)
     {
-        return context.Images.ElementAt(id);
+        return context.Images.Find(id);
     }
 
     [Route("items/weapons")]
