@@ -1,5 +1,20 @@
-<div style='color: white;'>Hier komen alle items van PUBG!</div>
-<div class="card col-sm-6" *ngIf="image && !isLoading">
+<div class="md-form card col-sm-3 pb-1 pt-2">
+    <p>Filter options:</p>
+    <select [(ngModel)]="Filter">
+        <option *ngFor="let f of filter" value="{{f}}">{{f}}</option>
+    </select>
+    <br>
+    <p>Or get an item bij id!</p>
+    <input type="text" placeholder="ID" [(ngModel)]="ID">
+    <br>
+    <div>
+        <input type="button" value="Filter" class="mr-5 mb-3" (click)="ApplyFilter()" style="width: 30%">
+        <input type="button" value="Get item by ID!" class="mr-5 mb-3" (click)="FilterById()" style="width: 30%">
+    </div>
+
+</div>
+<br>
+<div class="card col-sm-6" *ngIf="image && !loading && !outofrange">
     <div class="card" style="height: 85vh">
         <div class="card-body" style="overflow-y: auto">
             <table class="table">
@@ -26,3 +41,5 @@
         </div>
     </div>
 </div>
+
+<div style="color: white; margin-left:10%; font-size: 200% " *ngIf="outofrange">ID's gaan maar tot en met 118!</div>

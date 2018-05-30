@@ -13,13 +13,7 @@ public class ImagesController : Controller
     {
         this.context = context;
     }
-    // [Route("api/v1/maps")]
-    // [HttpGet]
-    // public List<byte[]> GetMap()
-    // {
-
-    // }
-
+   
     [Route("items")]
     [HttpGet]
     public List<Picture> GetAllImages()

@@ -14,4 +14,32 @@ export class ImageService{
      getImages():Observable<PictureData[]>{
         return this._http.get<PictureData[]>('http://localhost:5000/api/v1/items');
      }
+
+     getImagesId(itemId:number):Observable<PictureData>{
+        return this._http.get<PictureData>('http://localhost:5000/api/v1/items/' + itemId);
+     }
+
+     getWeapons():Observable<PictureData[]>{
+        return this._http.get<PictureData[]>('http://localhost:5000/api/v1/items/weapons');
+     }
+
+     getUseItems():Observable<PictureData[]>{
+        return this._http.get<PictureData[]>('http://localhost:5000/api/v1/items/use');
+     }
+
+     getEquipment():Observable<PictureData[]>{
+        return this._http.get<PictureData[]>('http://localhost:5000/api/v1/items/gear');
+     }
+
+     getAttachments():Observable<PictureData[]>{
+        return this._http.get<PictureData[]>('http://localhost:5000/api/v1/items/attachments');
+     }
+
+     getAmmunition():Observable<PictureData[]>{
+        return this._http.get<PictureData[]>('http://localhost:5000/api/v1/items/ammunition');
+     }
+
+     getMaps():Observable<PictureData[]>{
+        return this._http.get<PictureData[]>('http://localhost:5000/api/v1/items/maps');
+     }
 }

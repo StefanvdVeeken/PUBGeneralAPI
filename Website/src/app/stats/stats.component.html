@@ -1,7 +1,7 @@
 <div class="md-form card col-sm-3 pb-1 pt-2">
     <p>Choose a region</p>
     <select class="mb-2" [(ngModel)]="Region">
-        <option *ngFor="let region of regions" value="{{region}}">{{region}}</option>
+        <option *ngFor="let r of regions" value="{{r}}">{{r}}</option>
     </select>
     <p>Select the number of matches you want to display (1-5)</p>
     <select class="" [(ngModel)]="NumberOfMatches">
