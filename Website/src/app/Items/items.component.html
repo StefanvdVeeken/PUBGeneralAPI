@@ -1,4 +1,4 @@
-<div class="md-form card col-sm-3 pb-1 pt-2">
+<div class="md-form card col-sm-3 pb-1 pt-2" style="height: 25vh">
     <p>Filter options:</p>
     <select [(ngModel)]="Filter">
         <option *ngFor="let f of filter" value="{{f}}">{{f}}</option>
@@ -15,7 +15,7 @@
 </div>
 <br>
 <div class="card col-sm-6" *ngIf="image && !loading && !outofrange">
-    <div class="card" style="height: 85vh">
+    <div class="card" style="height: 60vh">
         <div class="card-body" style="overflow-y: auto">
             <table class="table">
                 <thead>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from '../services/image.service';
 import { PictureData } from '../DataInterfaces/PictureInterface';
+import { resource } from 'selenium-webdriver/http';
 
 @Component({
   selector: 'app-items',
@@ -14,17 +15,17 @@ export class ItemsComponent implements OnInit {
 
   }
 
-  image: PictureData[];
+  image: PictureData[] = [];
   loading: boolean;
   outofrange:boolean;
   filter: string[] = [
-    "all items",
+    "all",
     "weapons",
-    "use items",
+    "use",
     "equipment",
     "attachments",
     "maps",
-    "ammuntion"
+    "ammunition"
   ];
 
   private _filter: string;
@@ -48,7 +49,7 @@ export class ItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this._svc.getImages().subscribe(result => {
+    this._svc.getImages(this.filter[0]).subscribe(result => {
       this.image = result;
       console.log(this.image);
       if (this.image.length == result.length) {
@@ -58,85 +59,90 @@ export class ItemsComponent implements OnInit {
   }
 
   ApplyFilter(): void {
-    switch (this._filter) {
-      case this.filter[0]: {
-        this.loading = true;
-        this._svc.getImages().subscribe(result => {
-          this.image = result;
-          if (this.image.length == result.length) {
-            this.loading = false;
-          }
-        });
-        break;
-      }
+    this.loading=true;
+    this._svc.getImages(this._filter).subscribe(result =>{
+      this.image=result;
+      this.loading=false;
+    });
+    // switch (this._filter) {
+    //   case this.filter[0]: {
+    //     this.loading = true;
+    //     this._svc.getImages().subscribe(result => {
+    //       this.image = result;
+    //       if (this.image.length == result.length) {
+    //         this.loading = false;
+    //       }
+    //     });
+    //     break;
+    //   }
 
-      case this.filter[1]: {
-        this.loading = true;
-        this._svc.getWeapons().subscribe(result => {
-          this.image = result;
-          if (this.image.length == result.length) {
-            this.loading = false;
-          }
-        });
-        break;
-      }
+    //   case this.filter[1]: {
+    //     this.loading = true;
+    //     this._svc.getWeapons().subscribe(result => {
+    //       this.image = result;
+    //       if (this.image.length == result.length) {
+    //         this.loading = false;
+    //       }
+    //     });
+    //     break;
+    //   }
 
-      case this.filter[2]: {
-        this.loading = true;
-        this._svc.getUseItems().subscribe(result => {
-          this.image = result;
-          if (this.image.length == result.length) {
-            this.loading = false;
-          }
-        });
-        break;
-      }
+    //   case this.filter[2]: {
+    //     this.loading = true;
+    //     this._svc.getUseItems().subscribe(result => {
+    //       this.image = result;
+    //       if (this.image.length == result.length) {
+    //         this.loading = false;
+    //       }
+    //     });
+    //     break;
+    //   }
 
-      case this.filter[3]: {
-        this.loading = true;
-        this._svc.getEquipment().subscribe(result => {
-          this.image = result;
-          if (this.image.length == result.length) {
-            this.loading = false;
-          }
-        });
-        break;
-      }
+    //   case this.filter[3]: {
+    //     this.loading = true;
+    //     this._svc.getEquipment().subscribe(result => {
+    //       this.image = result;
+    //       if (this.image.length == result.length) {
+    //         this.loading = false;
+    //       }
+    //     });
+    //     break;
+    //   }
 
-      case this.filter[4]: {
-        this.loading = true;
-        this._svc.getAttachments().subscribe(result => {
-          this.image = result;
-          if (this.image.length == result.length) {
-            this.loading = false;
-          }
-        });
-        break;
-      }
+    //   case this.filter[4]: {
+    //     this.loading = true;
+    //     this._svc.getAttachments().subscribe(result => {
+    //       this.image = result;
+    //       if (this.image.length == result.length) {
+    //         this.loading = false;
+    //       }
+    //     });
+    //     break;
+    //   }
 
-      case this.filter[5]: {
-        this.loading = true;
-        this._svc.getMaps().subscribe(result => {
-          this.image = result;
-          if (this.image.length == result.length) {
-            this.loading = false;
-          }
-        });
-        break;
-      }
+    //   case this.filter[5]: {
+    //     this.loading = true;
+    //     this._svc.getMaps().subscribe(result => {
+    //       this.image = result;
+    //       if (this.image.length == result.length) {
+    //         this.loading = false;
+    //       }
+    //     });
+    //     break;
+    //   }
 
-      case this.filter[6]: {
-        this.loading = true;
-        this._svc.getAmmunition().subscribe(result => {
-          this.image = result;
-          if (this.image.length == result.length) {
-            this.loading = false;
-          }
-        });
-        break;
-      }
+    //   case this.filter[6]: {
+    //     this.loading = true;
+    //     this._svc.getAmmunition().subscribe(result => {
+    //       this.image = result;
+    //       if (this.image.length == result.length) {
+    //         this.loading = false;
+    //       }
+    //     });
+    //     break;
+    //   }
 
-    }
+    // }
   }
 
   FilterById(): void {

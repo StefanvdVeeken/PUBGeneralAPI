@@ -9,7 +9,68 @@ namespace Model
         public static void Initialize(PicturesContext context)
         {
             //Create the db if not yet exists
+            List<string> clist = new List<string>(new string[]{
+                "Albania",
+                "Andorra",
+                "Armenia",
+                "Austria",
+                "Azerbaijan",
+                "Belarus",
+                "Belgium",
+                "Bosnia and Herzegovina",
+                "Bulgaria",
+                "Croatia",
+                "Cyprus",
+                "Czech Republic",
+                "Denmark",
+                "Estonia",
+                "Finland",
+                "France",
+                "Georgia",
+                "Germany",
+                "Greece",
+                "Hungary",
+                "Iceland",
+                "Ireland",
+                "Italy",
+                "Kazakhstan",
+                "Liechtenstein",
+                "Lithuania",
+                "Luxembourg",
+                "Macedonia",
+                "Malta",
+                "Moldova",
+                "Monaco",
+                "Montenegro",
+                "Netherlands",
+                "Norway",
+                "Poland",
+                "Portugal",
+                "Romania",
+                "Russia",
+                "San Marino",
+                "Serbia",
+                "Slovakia",
+                "Slovenia",
+                "Spain",
+                "Sweden",
+                "Switzerland",
+                "Turkey",
+                "Ukraine",
+                "United Kingdom",
+                "Vatican City",
+            });
             context.Database.EnsureCreated();
+            
+            if(!context.Countries.Any()){
+                foreach(string c in clist){
+                    context.Countries.Add(new Country()
+                    {
+                        Name = c
+                    });
+                }
+            }
+
             if (!context.Images.Any())
             {
                 foreach (string maps in System.IO.Directory.GetFiles("./assets/Maps"))

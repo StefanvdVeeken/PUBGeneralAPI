@@ -1,29 +1,84 @@
+<div class="cont">
+    <div class="row">
+        <!-- Card -->
+        <div class="card col-sm-3 ml-5 p-0">
+            <!-- Card image -->
+            <div class="view overlay">
+                <img class="card-img-top" src="assets/logo.jpg" alt="Card image cap">
+                <a href="https://playbattlegrounds.com" target="_blank">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
 
-    <div class="cont">
-        <div class="row">
-            <!-- Card -->
-            <div class="card col-sm-3 ml-5 p-0">
-                <!-- Card image -->
-                <div class="view overlay">
-                    <img class="card-img-top" src="assets/logo.jpg" alt="Card image cap">
-                    <a href="https://playbattlegrounds.com" target="_blank">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
+            <!-- Card content -->
+            <div class="card-body">
 
-                <!-- Card content -->
-                <div class="card-body">
-
-                    <!-- Title -->
-                    <h4 class="card-title"><b>Welcome player!</b></h4>
-                    <!-- Text -->
-                    <p class="card-text">This site was created for people to look up their PUBG stats! Keep in mind the api itself is still in beta!</p>
-                    <p class="card-text">This site was created by Stefan van der Veeken with Angular and Bootstrap</p>
-
-                </div>
+                <!-- Title -->
+                <h4 class="card-title">
+                    <b>Welcome player!</b>
+                </h4>
+                <!-- Text -->
+                <p class="card-text">This site was created for people to look up their PUBG stats! Keep in mind the api itself is still in beta!</p>
+                <p class="card-text">This site was created by Stefan van der Veeken with Angular and Bootstrap</p>
 
             </div>
-            <!-- Card -->
 
         </div>
+        <!-- Card -->
+        <div class="card col-sm-2 ml-4">
+            <div class="card-body">
+                <h4 class="card-title">Add a country!</h4>
+                <input #CName type="text" placeholder="Country name">
+                <button class="mt-4" (click)="CountryAdd(CName.value)">Add!</button>
+            </div>
+        </div>
+
+        <div class="card col-sm-2 ml-2">
+            <div class="card-body">
+                <h4 class="card-title">Change a country's name!</h4>
+                <div>
+                    <input #Cid type="number" placeholder="id" style="width: 40%">
+                    <input #CNewname type="text" placeholder="new name" style="width: 40%">
+                </div>
+                <button class="mt-4" (click)="CountryUpdate(Cid.value, CNewname.value)">Update!</button>
+            </div>
+        </div>
+
+        <div class="card col-sm-2 ml-2">
+            <div class="card-body">
+                <h4 class="card-title">Delete a country if you like!</h4>
+                <input #deleteID type="number" placeholder="Country id">
+                <button class="mt-4" (click)="CountryDelete(deleteID.value)">Delete!</button>
+            </div>
+        </div>
+
+        <div class="card col-sm-2 ml-5 p-0" style="height:50vh">
+            <!-- Card content -->
+            <div class="card-body" style="overflow-y: auto">
+                <!-- Title -->
+                <h4 class="card-title">
+                    <b>Here are all the countries of Europe, just for you!</b>
+                </h4>
+                <table class="table" *ngIf="landen">
+                    <thead>
+                        <tr>
+                            <th> <a (click) ="SortingId()">Id</a></th>
+                            <th> <a (click) ="SortingName()">Name</a></th>
+
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let l of landen">
+                        <tr>
+                            <td>{{l.id}}</td>
+                            <td>{{l.name}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <button (click)="prevPage()">Previous Page</button>
+                    <button (click)="nextPage()">Next Page</button>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
