@@ -16,7 +16,7 @@ export class ItemsComponent implements OnInit {
   }
 
   image: PictureData[] = [];
-  loading: boolean;
+  isLoading: boolean = false;
   outofrange:boolean;
   filter: string[] = [
     "all",
@@ -48,21 +48,21 @@ export class ItemsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loading = true;
+    this.isLoading = true;
     this._svc.getImages(this.filter[0]).subscribe(result => {
       this.image = result;
       console.log(this.image);
       if (this.image.length == result.length) {
-        this.loading = false;
+        this.isLoading = false;
       }
     });
   }
 
   ApplyFilter(): void {
-    this.loading=true;
+    this.isLoading=true;
     this._svc.getImages(this._filter).subscribe(result =>{
       this.image=result;
-      this.loading=false;
+      this.isLoading=false;
     });
     // switch (this._filter) {
     //   case this.filter[0]: {
@@ -146,7 +146,7 @@ export class ItemsComponent implements OnInit {
   }
 
   FilterById(): void {
-    this.loading = true;
+    this.isLoading = true;
     this.image = [];
     this._svc.getImagesId(this._id).subscribe(result =>{
       this.image[0] = result;
@@ -156,7 +156,7 @@ export class ItemsComponent implements OnInit {
       if(this.image[0] == null){
         this.outofrange = true;
       }
-      this.loading = false;
+      this.isLoading = false;
     });
   }
 

@@ -14,7 +14,7 @@
 
 </div>
 <br>
-<div class="card col-sm-6" *ngIf="image && !loading && !outofrange">
+<div class="card col-sm-6" *ngIf="image && !isLoading && !outofrange">
     <div class="card" style="height: 60vh">
         <div class="card-body" style="overflow-y: auto">
             <table class="table">
@@ -41,5 +41,7 @@
         </div>
     </div>
 </div>
+<div style="color: white; margin-left:10%; font-size: 200%"  *ngIf="isLoading">Loading</div>
 
-<div style="color: white; margin-left:10%; font-size: 200% " *ngIf="outofrange">ID's gaan maar tot en met 118!</div>
+<div style="color: white; margin-left:10%; font-size: 200% " *ngIf="outofrange && !isLoading">ID's gaan maar tot en met 118!</div>
+
