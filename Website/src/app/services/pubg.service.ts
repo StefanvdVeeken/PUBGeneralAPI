@@ -3,7 +3,6 @@ import { HttpClient, HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/do";
 import "rxjs/add/observable/of";
-import { InterceptService } from "./intercept.service";
 import { IPUBGData } from "../DataInterfaces/PlayerInterface";
 import {MatchData} from "../DataInterfaces/MatchInterface";
 

@@ -12668,11 +12668,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "X:\\School\\PUBGeneralAPI\\AssetsApi\\AssetsApi.csproj",
+      "projectUniqueName": "x:\\School\\PUBGeneralAPI\\AssetsApi\\AssetsApi.csproj",
       "projectName": "AssetsApi",
-      "projectPath": "X:\\School\\PUBGeneralAPI\\AssetsApi\\AssetsApi.csproj",
+      "projectPath": "x:\\School\\PUBGeneralAPI\\AssetsApi\\AssetsApi.csproj",
       "packagesPath": "C:\\Users\\Stefan\\.nuget\\packages\\",
-      "outputPath": "X:\\School\\PUBGeneralAPI\\AssetsApi\\obj\\",
+      "outputPath": "x:\\School\\PUBGeneralAPI\\AssetsApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,7 +1,7 @@
 <div class="md-form card col-sm-3 pb-1 pt-2">
     <p>Choose a region</p>
     <select class="mb-2" [(ngModel)]="Region">
-        <option *ngFor="let region of regions" value="{{region}}">{{region}}</option>
+        <option *ngFor="let r of regions" value="{{r}}">{{r}}</option>
     </select>
     <p>Select the number of matches you want to display (1-5)</p>
     <select class="" [(ngModel)]="NumberOfMatches">
@@ -9,6 +9,9 @@
     </select>
     <input #SearchName type="text" class="mr-5 mb-3" placeholder="Username" id="inputPlaceholderEx" (keyup.enter)="SearchUsername(SearchName.value)">
     <p>Press enter to search</p>
+    <p>Enkele usernames om op te zoeken:</p>
+    <p>pc-eu: Acromentula, pc-eu: PlatinaGuy, pc-na: Papaleguas_TX, pc-sea: shenmiwujin</p>
+    <p>Of kijk voor usernames op https://pubgtracker.com/leaderboards</p>
 </div>
 
 <br>
@@ -45,7 +48,7 @@
 <div class="card col-sm-3" *ngIf="match.length == 0 || isLoading">
     <p>Please wait for the match statistics to be loaded</p>
 </div>
-
-<div class="card col-sm-3" *ngIf="match?.length < NumberOfMatches && player && !isLoading">
+<br>
+<div class="card col-sm-3" *ngIf="match?.length < NumberOfMatches && player && isLoading">
     <p>This player hasn't played this many matches, select less!</p>
 </div>

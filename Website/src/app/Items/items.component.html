@@ -1,1 +1,47 @@
-<div style='color: white;'>Hier komen alle items van PUBG!</div>
+<div class="md-form card col-sm-3 pb-1 pt-2" style="height: 25vh">
+    <p>Filter options:</p>
+    <select [(ngModel)]="Filter">
+        <option *ngFor="let f of filter" value="{{f}}">{{f}}</option>
+    </select>
+    <br>
+    <p>Or get an item bij id!</p>
+    <input type="text" placeholder="ID" [(ngModel)]="ID">
+    <br>
+    <div>
+        <input type="button" value="Filter" class="mr-5 mb-3" (click)="ApplyFilter()" style="width: 30%">
+        <input type="button" value="Get item by ID!" class="mr-5 mb-3" (click)="FilterById()" style="width: 30%">
+    </div>
+
+</div>
+<br>
+<div class="card col-sm-6" *ngIf="image && !isLoading && !outofrange">
+    <div class="card" style="height: 60vh">
+        <div class="card-body" style="overflow-y: auto">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Picture</th>
+
+                    </tr>
+                </thead>
+                <tbody *ngFor="let m of image">
+                    <tr>
+                        <td>{{m.id}}</td>
+                        <td>{{m.name}}</td>
+                        <td>{{m.type}}</td>
+                        <td>
+                            <img src="data:image/jpeg;base64,{{m.byteValue}}" style="height: 100px">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div style="color: white; margin-left:10%; font-size: 200%"  *ngIf="isLoading">Loading</div>
+
+<div style="color: white; margin-left:10%; font-size: 200% " *ngIf="outofrange && !isLoading">ID's gaan maar tot en met 118!</div>
+
